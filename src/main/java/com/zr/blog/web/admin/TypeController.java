@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 
@@ -38,12 +39,13 @@ public class TypeController {
 
 
     @PostMapping("/type")
-    public String save(Type type) {
+    public String save(Type type, RedirectAttributes redirectAttributes) {
         Type t = typeService.save(type);
         if(t == null) {
-
+            //失败提示
+            redirectAttributes.addFlashAttribute("message", "操作失败");
         } else {
-
+            redirectAttributes.addFlashAttribute("message", "操作成功");
         }
         return "redirect:/admin/types";
     }
