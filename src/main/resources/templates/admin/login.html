@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/_fragments_a :: head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 增加一个移动端适配 -->
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>管理后台</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+
+<body th:style="'background:url('+ @{../images/bg.png} + ');'">
+<br>
+<div class="m-container-small m-padded-tb-massive" style="max-width: 30em !important; padding-top: 15em !important;">
+    <div class="ui container">
+        <div class="ui middle aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui teal image header">
+                    <!--<img src="./Login Example - Semantic_files/logo.png" class="image">-->
+                    <div class="content" style="padding-bottom: 15px">
+                        博客后台管理
+                    </div>
+                </h2>
+                <form class="ui large form" method="post" action="#" th:action="@{/admin/login}" >
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="username" placeholder="Username/E-mail address">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <button class="ui fluid large teal submit button">Login</button>
+                    </div>
+
+                    <div class="ui error mini message"></div>
+                    <div class="ui mini negative message" th:unless="${#strings.isEmpty(errorMessage)}" th:text="${errorMessage}"> 用户名或密码错误 </div>
+                </form>
+
+                <!--                    <div class="ui message">-->
+                <!--                        New to us? <a href="https://semantic-ui.com/examples/login.html#">Sign Up</a>-->
+                <!--                    </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--/*/<th:block th:replace="admin/_fragments_a :: script">/*/-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+<script>
+    $(".ui.form").form({
+        fields : {
+            username : {
+                identifier : "username",
+                rules:[{
+                    type: "empty",
+                    prompt: "请输入用户名"
+                }]
+            },
+            password : {
+                identifier : "password",
+                rules:[{
+                    type: "empty",
+                    prompt: "请输入密码"
+                }]
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

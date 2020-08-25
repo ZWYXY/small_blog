@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 增加一个移动端适配 -->
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>博客</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+
+<body>
+<!-- 导航 -->
+<nav th:replace="_fragments :: menu(1)"  class="ui inverted attached segment m-padded-tb-mini ">
+<!-- 使用fragment代替 -->
+<!--    <div class="ui container">-->
+<!--        <div class="ui inverted secondary stackable menu">-->
+<!--            <h2 class="ui teal header item"> blog </h2>-->
+<!--            <a href="#" class="m-item item m-mobile-hide"><i class=" home icon"></i> 首页 </a>-->
+<!--            <a href="#" class="m-item item m-mobile-hide"><i class=" th list icon"></i> 分类 </a>-->
+<!--            <a href="#" class="m-item item m-mobile-hide"><i class=" tags icon"></i> 标签 </a>-->
+<!--            <a href="#" class="m-item item m-mobile-hide"><i class=" clone icon"></i> 归档 </a>-->
+<!--            <a href="#" class="m-item item m-mobile-hide"><i class=" info icon"></i> 关于我 </a>-->
+
+<!--            <div class="right m-item item m-mobile-hide ">-->
+<!--                <div class="ui icon inverted transparent input">-->
+<!--                    <input type="text" placeholder="Search...">-->
+<!--                    <i class="search link icon"></i>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <a href="#" class="ui menu toggle black icon button m-right-top m-web-hide ">-->
+<!--        <i class="sidebar icon"></i>-->
+<!--    </a>-->
+</nav>
+
+<!-- 中间内容 -->
+<div class="m-padded-tb-large">
+    <div class="ui container">
+        <div class="ui stackable grid"><!-- 增加移动适配 -->
+
+            <!-- 左边博客列表 -->
+            <!-- middle/medium -->
+            <div class="eleven wide column ">
+                <!-- header -->
+                <div class="ui top attached segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <h3 class="ui teal header">博客</h3>
+                        </div>
+                        <div class="right aligned column m-text-thin">
+                            共<h2 class="ui orange header m-inline-block">14</h2>篇
+                        </div>
+                    </div>
+                </div>
+
+                <!-- content -->
+                <div class="ui attached segment">
+                    <!-- 文章列表 -->
+                    <div class="ui padded vertical segment m-padded-tb ">
+                        <div class="ui mobile reversed stackable grid ">
+                            <!-- 右11 -->
+                            <div class="eleven wide column">
+                                <h3 class="ui header">关于刻意练习的清单</h3>
+                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                    「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
+                                    尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
+
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui tiny horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/seed/picsum/100/100" alt=""
+                                                     class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">Whosyourdaddy</a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020年3月24日
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i>2312
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny ">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 左5 -->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
+                                    <!--<img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb ">
+                        <div class="ui mobile reversed stackable grid ">
+                            <!-- 右11 -->
+                            <div class="eleven wide column">
+                                <h3 class="ui header">关于刻意练习的清单</h3>
+                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                    「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
+                                    尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
+
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui tiny horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/seed/picsum/100/100" alt=""
+                                                     class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">Whosyourdaddy</a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020年3月24日
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i>2312
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny ">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 左5 -->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
+                                    <!--                                        <img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb ">
+                        <div class="ui mobile reversed stackable grid ">
+                            <!-- 右11 -->
+                            <div class="eleven wide column">
+                                <h3 class="ui header">关于刻意练习的清单</h3>
+                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                    「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
+                                    尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
+
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui tiny horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/seed/picsum/100/100" alt=""
+                                                     class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">Whosyourdaddy</a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020年3月24日
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i>2312
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny ">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 左5 -->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
+                                    <!--                                        <img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb ">
+                        <div class="ui mobile reversed stackable grid ">
+                            <!-- 右11 -->
+                            <div class="eleven wide column">
+                                <h3 class="ui header">关于刻意练习的清单</h3>
+                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                    「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
+                                    尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
+
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui tiny horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/seed/picsum/100/100" alt=""
+                                                     class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">Whosyourdaddy</a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020年3月24日
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i>2312
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny ">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 左5 -->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
+                                    <!--                                        <img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb ">
+                        <div class="ui mobile reversed stackable grid ">
+                            <!-- 右11 -->
+                            <div class="eleven wide column">
+                                <h3 class="ui header">关于刻意练习的清单</h3>
+                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                    「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
+                                    尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
+
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui tiny horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/seed/picsum/100/100" alt=""
+                                                     class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">Whosyourdaddy</a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020年3月24日
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i>2312
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny ">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 左5 -->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
+                                    <!--                                        <img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb ">
+                        <div class="ui mobile reversed stackable grid ">
+                            <!-- 右11 -->
+                            <div class="eleven wide column">
+                                <h3 class="ui header">关于刻意练习的清单</h3>
+                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                    「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
+                                    尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
+
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui tiny horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/seed/picsum/100/100" alt=""
+                                                     class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">Whosyourdaddy</a></div>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020年3月24日
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i>2312
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny ">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 左5 -->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
+                                    <!--<img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- footer -->
+                <div class="ui bottom attached segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <a href="#" class="ui mini teal basic button">上一页</a>
+                        </div>
+                        <div class="right aligned column m-text-thin">
+                            <a href="#" class="ui mini teal basic button">上一页</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右边的top -->
+            <div class="five wide column">
+
+                <!-- 分类 -->
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <i class="idea icon"></i> 分类
+                            </div>
+                            <div class="right aligned column">
+                                <a href="#" target="_blank">more <i class="angle double right icon"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui teal segment">
+
+                        <div class="ui fluid vertical menu">
+                            <a href="#" class="item">
+                                学习日志
+                                <div class="ui teal basic left pointing label">13</div>
+                            </a>
+                            <a href="#" class="item">
+                                思考与感悟
+                                <div class="ui teal basic left pointing label">13</div>
+                            </a>
+                            <a href="#" class="item">
+                                学习日志
+                                <div class="ui teal basic left pointing label">13</div>
+                            </a>
+                            <a href="#" class="item">
+                                学习日志
+                                <div class="ui teal basic left pointing label">13</div>
+                            </a>
+                            <a href="#" class="item">
+                                学习日志
+                                <div class="ui teal basic left pointing label">13</div>
+                            </a>
+                            <a href="#" class="item">
+                                学习日志
+                                <div class="ui teal basic left pointing label">13</div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- 标签 -->
+                <div class="ui segments m-margin-top-large ">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid ">
+
+                            <div class="column">
+                                <i class="tags icon"></i> 标签
+                            </div>
+
+                            <div class="right aligned column">
+                                <a href="#" target="_blank"> more
+                                    <i class="angle double right icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui teal segment">
+
+                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny  ">Java
+                            <div class="detail">23</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny  ">Spring
+                            <div class="detail">16</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny  ">MyBatis
+                            <div class="detail">17</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny  ">SpringMVC
+                            <div class="detail">9</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny  ">SpringBoot
+                            <div class="detail">7</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny  ">SpringCloud
+                            <div class="detail">3</div>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- 最新推荐 -->
+                <div class="ui segments m-margin-top-large ">
+                    <div class="ui secondary segment">
+                        <i class="bookmark icon"></i>最新推荐
+                    </div>
+
+                    <div class="ui teal segment">
+                        <a href="#" target="_blank" class="m-black m-text-thin "> 用户故事 </a>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" target="_blank" class="m-black m-text-thin "> 用户故事 </a>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" target="_blank" class="m-black m-text-thin "> 用户故事 </a>
+                    </div>
+
+                </div>
+
+
+                <!-- 二维码 -->
+                <h4 class="ui horizontal divider header m-margin-top-large">
+                    扫码关注我
+                </h4>
+                <div class="ui centered card" style="width: 11em">
+                    <img src="../static/images/bg.png" th:src="@{/images/bg.png}" class="ui rounded image">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<!-- 底部 -->
+<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+<!-- 使用fragment代替-->
+<!--    <div class="ui center aligned container">-->
+<!--        <div class="ui inverted divided stackable grid">-->
+
+<!--            <div class="three wide column">-->
+<!--                <div class="ui inverted link list">-->
+<!--                    <div class="item">-->
+<!--                        <img src="../static/images/bg.png" th:src="@{/images/bg.png}" class="ui rounded image" alt="" style="width: 110px">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="three wide column">-->
+<!--                <h4 class="ui inverted header m-text-thin m-text-spaced ">最新博客</h4>-->
+<!--                <div class="ui inverted link list">-->
+<!--                    <a href="#" class="item"> 用户故事() </a>-->
+<!--                    <a href="#" class="item"> 用户故事() </a>-->
+<!--                    <a href="#" class="item"> 用户故事() </a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="three wide column">-->
+<!--                <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>-->
+<!--                <div class="ui inverted link list">-->
+<!--                    <a href="#" class="item"> 用户故事() </a>-->
+<!--                    <a href="#" class="item"> 用户故事() </a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="seven wide column">-->
+<!--                <h4 class="ui inverted header m-text-thin m-text-spaced  ">Blog</h4>-->
+<!--                <p class="m-text-thin m-text-spaced m-opacity-mini">-->
+<!--                    ......................................................-->
+<!--                    ......................................................-->
+<!--                    ......................................................-->
+<!--                </p>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--        <div class="ui inverted section divider"></div>-->
+<!--        <p class="m-text-thin m-text-spaced m-opacity-mini ">Copyright@ 2020 - 2021 Blog Designed by someone </p>-->
+<!--    </div>-->
+</footer>
+
+<!--
+    使用thymeleaf 引入所有js
+    下面写法特殊，请注意
+    这种写法 保证了 在静态页面时，可以正确加载js，同时，当它是一个动态页面时，可以加载thymeleaf中引入的js
+    注意：特殊标签和标签之间不要有空格
+ -->
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+<script >
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    });
+</script>
+
+
+</body>
+</html>
