@@ -43,8 +43,10 @@
 
 <div class="ui attached pointing menu ">
     <div class="ui container">
-        <a href="#" class="item">发布</a>
-        <a href="#" class="active item"> 列表</a>
+        <div class="right menu">
+        <a href="#" th:href="@{/admin/types/input}" class="item">新增</a>
+        <a href="#" th:href="@{/admin/types}"       class="active item">列表</a>
+        </div>
     </div>
 </div>
 
@@ -79,11 +81,16 @@
             <tfoot>
             <tr>
                 <th colspan="6">
-                    <div class="ui mini right floated pagination menu" th:if="${page.totalPages} > 1">
-                        <a th:href="@{/admin/types(page=${page.number}-1)}" class="item" th:unless="${page.first}" >上一页</a>
+                    <div class="ui mini right floated pagination menu" th:if="${page.totalPages} > 1" th:unless="${page.last}" >
+<!--                        <a th:href="@{/admin/types(page=${page.number}-1)}" class="item" th:unless="${page.first}" >上一页</a>-->
                         <a th:href="@{/admin/types(page=${page.number}+1)}" class="item" th:unless="${page.last}" >下一页</a>
                     </div>
-                    <a th:href="@{/admin/types/input}" class="ui mini left floated teal very basic button">新增</a>
+
+                    <div class="ui mini left floated pagination menu" th:if="${page.totalPages} > 1" th:unless="${page.first}">
+                        <a th:href="@{/admin/types(page=${page.number}-1)}" class="item" th:unless="${page.first}" >上一页</a>
+<!--                        <a th:href="@{/admin/types(page=${page.number}+1)}" class="item" th:unless="${page.last}" >下一页</a>-->
+                    </div>
+<!--                    <a th:href="@{/admin/types/input}" class="ui mini left floated teal very basic button">新增</a>-->
                 </th>
             </tr>
             </tfoot>
@@ -91,6 +98,8 @@
     </div>
 </div>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <!-- 底部 -->
 <footer th:replace="admin/_fragments_a :: footer"
@@ -164,6 +173,22 @@
             .closest('.message')
             .transition('fade');
     });
+
+    // function deleteType(node) {
+    //     var url = node.href;/*得到href的值*/
+    //     $.ajax({
+    //         url:url,/*url也可以是json之类的文件等等*/
+    //         type:'DELETE',/*DELETE、POST */
+    //         success:function (result) {
+    //             //判断result结果
+    //             if(result)
+    //                 window.location.reload();
+    //             else
+    //                 alert("返回了false")
+    //
+    //         }
+    //     })
+    // }
 </script>
 
 </body>
