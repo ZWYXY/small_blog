@@ -32,10 +32,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
     <a href="#" class="ui menu toggle black icon button m-right-top m-web-hide ">
         <i class="sidebar icon"></i>
     </a>
@@ -51,8 +49,10 @@
 <!-- 中间内容 -->
 <div class="m-container-small m-padded-tb-big">
    <div class="ui container">
-       <form action="#" method="post" class="ui segment form">
 
+       <!-- 搜索和新增博客-->
+       <div class="ui secondary segment form">
+           <input type="hidden" name="page">
            <div class="inline fields">
 
                <div class="field">
@@ -61,17 +61,19 @@
 
                <div class="field">
                    <div class="ui multiple search selection dropdown">
-                       <input type="text" class="hidden" name="type">
+                       <input type="text" class="hidden" name="typeId">
                        <i class="dropdown icon"></i>
                        <div class="default text">分类</div>
                        <div class="menu">
-                           <div class="item" data-value="s">Spring</div>
+                           <div th:each="type : ${types}" class="item" data-value="1"
+                                th:data-value="${type.id}" th:text="${type.name}">Spring</div>
+                           <!--/*-->
                            <div class="item" data-value="c">SpringMVC</div>
                            <div class="item" data-value="t">SpringBoot</div>
+                           <!--*/-->
                        </div>
                    </div>
                </div>
-
 
                <div class="field">
                    <div class="ui checkbox">
@@ -80,10 +82,8 @@
                    </div>
                </div>
 
-
                <div class="field">
-
-                   <button class="ui mini teal button"> <i class="search icon"></i> 搜索 </button>
+                   <button type="button" id="search-button" class="ui mini teal button"> <i class="search icon"></i> 搜索 </button>
                </div>
 
                <div class="field">
@@ -92,8 +92,9 @@
            </div>
        </form>
 
-       <table class="ui <!--celled--> table">
-
+       <!-- 博客列表 -->
+       <div id="table-container">
+       <table th:fragment="blogList" class="ui compact teal <!--celled--> table">
            <thead>
             <tr>
                 <th></th>
@@ -105,34 +106,28 @@
             </tr>
            </thead>
            <tbody>
-            <tr>
-                <td>1</td>
-                <td>springmvc啊啊</td>
-                <td>认知升级</td>
-                <td>是</td>
-                <td>2020年4月12日</td>
+            <tr th:each="blog, iterStat : ${page.content}">
+                <td th:text="${iterStat.count}" >1</td>
+                <td th:text="${blog.title}" >springmvc啊啊</td>
+                <td th:text="${blog.type.name}">认知升级</td>
+                <td th:text="${blog.recommend} ? '是':'否'">是</td>
+                <td th:text="${blog.updateTime}">2020年4月12日</td>
                 <td>
-                    <a href="#" class="ui mini teal button">编辑</a>
-                    <a href="#" class="ui mini red button">删除</a>
+                    <a href="#" th:href="@{/admin/blog/{id}/input(id=${blog.id})}" class="ui mini teal button">编辑</a>
+                    <a href="#" th:href="@{/admin/blog/{id}/delete(id=${blog.id})}" class="ui mini red button">删除</a>
                 </td>
             </tr>
            </tbody>
            <tfoot>
-            <tr>
-              <th colspan="6" >
-                 <div class="ui mini right floated pagination menu">
-                     <a href="" class="item ">上一页</a>
-                     <a href="" class="item ">下一页</a>
-                 </div>
-
-
-              </th>
-            </tr>
-
+           <tr>
+               <div class="ui mini right floated pagination menu" th:if="${page.totalPages}>1" >
+                   <a onclick="page(this)" th:attr="data-page='${page.number}-1'"  class="item" th:unless="${page.first}" >上一页</a>
+                   <a onclick="page(this)" th:attr="data-page='${page.number}+1'"  class="item" th:unless="${page.last}" >下一页</a>
+               </div>
+           </tr>
            </tfoot>
-
        </table>
-
+       </div>
 
    </div>
 </div>
@@ -201,6 +196,25 @@
     $(".ui.dropdown").dropdown(
         {on : 'hover'}
     );
+
+    $("#search-button").click(function (){
+        loaddata();
+    })
+
+    function page(obj) {
+        $("[name='page']").val($(obj)).data("page");
+        loaddata();
+    }
+
+    function loaddata() {
+        $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
+            title : $("[name='title']").val(),
+            typeId : $("[name='typeId']").val(),
+            recommend : $("[name='recommend']").prop('checked'),
+            page : $("[name='page']").val()
+        });
+    }
+
 </script>
 
 </body>

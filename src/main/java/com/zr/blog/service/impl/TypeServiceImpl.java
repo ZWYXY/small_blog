@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class TypeServiceImpl implements TypeService {
@@ -35,6 +36,15 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Page<Type> listType(Pageable pageable) {
         return typeRepository.findAll(pageable);
+    }
+
+    /**
+     * 获取所有Type 不需要分页
+     * @return
+     */
+    @Override
+    public List<Type> listType() {
+        return typeRepository.findAll();
     }
 
     @Override
