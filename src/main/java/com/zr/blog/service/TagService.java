@@ -5,6 +5,8 @@ import com.zr.blog.po.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface TagService {
 
 
@@ -14,6 +16,12 @@ public interface TagService {
      * @return
      */
     Tag getTag(Long id);
+
+    /**
+     * 获取 Tag 列表 不需要分页
+     * @return
+     */
+    List<Tag> tagList();
 
     /**
      * 获取 Tag 列表
@@ -49,8 +57,5 @@ public interface TagService {
      * @param id
      */
     void deleteTag(Long id);
-
-
-
 
 }

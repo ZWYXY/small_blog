@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -28,6 +29,11 @@ public class TagServiceImpl implements TagService {
     @Override
     public Page<Tag> TagList(Pageable pageable) {
         return tagRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Tag> tagList() {
+        return tagRepository.findAll();
     }
 
     @Override

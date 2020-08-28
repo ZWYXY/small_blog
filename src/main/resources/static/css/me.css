@@ -112,14 +112,20 @@
 
 
 /* -------- container -------- */
-.m-container {
-    max-width: 72em !important;
-    margin: auto !important;
-}
+
 .m-container-small {
     max-width: 60em !important;
     margin: auto !important;
 }
+.m-container {
+    max-width: 72em !important;
+    margin: auto !important;
+}
+.m-container-big {
+    max-width: 90em !important;
+    margin: auto !important;
+}
+
 
 /* --------shadow-------- */
 .m-shadow-small {

@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/_fragments_a :: head(~{:: title})">
     <meta charset="UTF-8">
-
     <!-- 增加一个移动端适配 -->
     <meta name="viewport" content="with=device-width, initial-scale=1.0">
     <title>管理后台</title>
@@ -87,7 +86,8 @@
                </div>
 
                <div class="field">
-                   <button class="ui mini teal button"> <i class="edit icon"></i> 新增 </button>
+                   <a class="ui mini teal button" th:href="@{/admin/blog/input}" >
+                   <i class="edit icon"></i> 新增 </a>
                </div>
            </div>
        </form>
