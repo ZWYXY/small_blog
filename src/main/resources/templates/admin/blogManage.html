@@ -48,7 +48,6 @@
 <!-- 中间内容 -->
 <div class="m-container-small m-padded-tb-big">
    <div class="ui container">
-
        <!-- 搜索和新增博客-->
        <div class="ui secondary segment form">
            <input type="hidden" name="page">
@@ -59,18 +58,21 @@
                </div>
 
                <div class="field">
-                   <div class="ui multiple search selection dropdown">
-                       <input type="text" class="hidden" name="typeId">
-                       <i class="dropdown icon"></i>
-                       <div class="default text">分类</div>
-                       <div class="menu">
-                           <div th:each="type : ${types}" class="item" data-value="1"
-                                th:data-value="${type.id}" th:text="${type.name}">Spring</div>
-                           <!--/*-->
-                           <div class="item" data-value="c">SpringMVC</div>
-                           <div class="item" data-value="t">SpringBoot</div>
-                           <!--*/-->
+                   <div class="ui labeled action input" >
+                       <div class="ui type multiple search selection dropdown">
+                           <input type="text" class="hidden" name="typeId">
+                           <i class="dropdown icon"></i>
+                           <div class="default text">分类</div>
+                           <div class="menu">
+                               <div th:each="type : ${types}" class="item" data-value="1"
+                                    th:data-value="${type.id}" th:text="${type.name}">Spring</div>
+                               <!--/*-->
+                               <div class="item" data-value="c">SpringMVC</div>
+                               <div class="item" data-value="t">SpringBoot</div>
+                               <!--*/-->
+                           </div>
                        </div>
+                       <button id="clear-btn" class="ui compact button">clear</button>
                    </div>
                </div>
 
@@ -90,7 +92,7 @@
                    <i class="edit icon"></i> 新增 </a>
                </div>
            </div>
-       </form>
+       </div>
 
        <!-- 博客列表 -->
        <div id="table-container">
@@ -111,6 +113,7 @@
                 <td th:text="${blog.title}" >springmvc啊啊</td>
                 <td th:text="${blog.type.name}">认知升级</td>
                 <td th:text="${blog.recommend} ? '是':'否'">是</td>
+                <td th:text="${blog.published} ? '草稿':'发布'">是</td>
                 <td th:text="${blog.updateTime}">2020年4月12日</td>
                 <td>
                     <a href="#" th:href="@{/admin/blog/{id}/input(id=${blog.id})}" class="ui mini teal button">编辑</a>
@@ -127,11 +130,16 @@
            </tr>
            </tfoot>
        </table>
-       </div>
 
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+          <i class="close icon"></i>
+          <div class="header">提示：</div>
+          <p th:text="${message}">操作成功！</p>
+        </div>
+
+       </div>
    </div>
 </div>
-
 
 <!-- 底部 -->
 <footer th:replace="admin/_fragments_a :: footer" class="ui inverted vertical segment m-padded-tb-massive footer form-page ">
@@ -198,6 +206,7 @@
     );
 
     $("#search-button").click(function (){
+        $("[name='page']").val(0);
         loaddata();
     })
 
@@ -214,6 +223,21 @@
             page : $("[name='page']").val()
         });
     }
+
+    /* 消息提示关闭初始化 */
+    $('.message .close').on('click',
+        function () {
+            $(this).closest('.message').transition('fade');
+        });
+
+    /* 清除 */
+    $('#clear-btn')
+        .on('click', function() {
+            $('.ui.type.dropdown')
+                .dropdown('clear')
+            ;
+        })
+    ;
 
 </script>
 

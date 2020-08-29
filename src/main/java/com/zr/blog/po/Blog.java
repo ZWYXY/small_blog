@@ -5,9 +5,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static javax.persistence.FetchType.LAZY;
 
 @Data
 @ToString
@@ -19,6 +22,8 @@ public class Blog {
     @GeneratedValue
     private Long id;
     private String title;       // 标题
+    @Lob
+    @Basic(fetch = LAZY)
     private String content;     // 内容
     private String firstPicture;// 首图
     private String flag;        // 标记
@@ -30,6 +35,10 @@ public class Blog {
     private boolean recommend;      // 是否推荐
     private Date createTime;        // 创建时间
     private Date updateTime;        // 更新时间
+
+    @NotBlank(message = "tagsId can not be null or whitespace only")
+    @Transient // 被这个注解声明的字段，不会被当成数据库字段，也不会去更新数据表
+    private String tagsId;          // 以字符串形式传回的Tag Id 比如： "1,2,3"
 
     @ManyToOne
     private Type type;

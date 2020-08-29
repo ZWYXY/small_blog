@@ -31,6 +31,11 @@ public interface TagService {
     Page<Tag> TagList(Pageable pageable);
 
     /**
+     * 根据 ids = "1,2,3" 从中提取出id 获取到指定的TagList
+     */
+    List<Tag> tagList(String ids);
+
+    /**
      * 根据 Tag 名称获取Tag
      * @param name
      * @return
