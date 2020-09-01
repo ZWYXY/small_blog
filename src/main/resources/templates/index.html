@@ -51,24 +51,80 @@
                             <h3 class="ui teal header">博客</h3>
                         </div>
                         <div class="right aligned column m-text-thin">
-                            共<h2 class="ui orange header m-inline-block">14</h2>篇
+                            共<h2 class="ui orange header m-inline-block" th:text="${page.totalElements}">14</h2>篇
                         </div>
                     </div>
                 </div>
+
 
                 <!-- content -->
                 <div class="ui attached segment">
                     <!-- 文章列表 -->
-                    <div class="ui padded vertical segment m-padded-tb ">
-                        <div class="ui mobile reversed stackable grid ">
+                    <div class="ui vertical segment m-padded-tb" th:each="blog : ${page.content}">
+                        <div class="ui middle aligned mobile reversed stackable grid ">
+                            <!-- 右11 -->
+                            <div class="eleven wide column">
+                                <h3 class="ui header">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}"
+                                    target="_blank" class="m-black" th:text="${blog.title}">
+                                        关于刻意练习的清单
+                                    </a>
+                                </h3>
+                                <p class="m-text" th:text="|${blog.description}......|">
+                                    最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                    「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
+                                    尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...
+                                </p>
+                                <div class="ui stackable grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui tiny horizontal link list">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/seed/picsum/100/100" alt=""
+                                                     th:src="@{${blog.user.avatar}}"
+                                                     class="ui avatar image">
+                                                <div class="content">
+                                                    <a href="#" class="header" th:text="${blog.user.nickname}">Whosyourdaddy</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="calendar icon"></i>
+                                                <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2017-10-01</span>
+                                            </div>
+
+                                            <div class="item">
+                                                <i class="eye icon"></i>
+                                                <span th:text="${blog.views}">2342</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label m-padded-tiny" th:text="${blog.type.name}">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 左5 -->
+                            <div class="five wide column">
+                                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                    <img src="https://picsum.photos/seed/picsum/800/450" th:src="@{${blog.firstPicture}}"  alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/*-->
+                    <div class="ui vertical segment m-padded-tb ">
+                        <div class="ui middle aligned mobile reversed stackable grid ">
                             <!-- 右11 -->
                             <div class="eleven wide column">
                                 <h3 class="ui header">关于刻意练习的清单</h3>
-                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                <p class="m-text">
+                                    最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
                                     「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
                                     尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
-                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
-
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...
+                                </p>
                                 <div class="ui stackable grid">
                                     <div class="eleven wide column">
                                         <div class="ui tiny horizontal link list">
@@ -93,27 +149,25 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- 左5 -->
                             <div class="five wide column">
                                 <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
-                                    <!--<img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui rounded image">
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="ui padded vertical segment m-padded-tb ">
-                        <div class="ui mobile reversed stackable grid ">
+                    <div class="ui vertical segment m-padded-tb ">
+                        <div class="ui middle aligned mobile reversed stackable grid ">
                             <!-- 右11 -->
                             <div class="eleven wide column">
                                 <h3 class="ui header">关于刻意练习的清单</h3>
-                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                <p class="m-text">
+                                    最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
                                     「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
                                     尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
-                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
-
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...
+                                </p>
                                 <div class="ui stackable grid">
                                     <div class="eleven wide column">
                                         <div class="ui tiny horizontal link list">
@@ -138,27 +192,25 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- 左5 -->
                             <div class="five wide column">
                                 <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
-                                    <!--                                        <img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui rounded image">
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="ui padded vertical segment m-padded-tb ">
-                        <div class="ui mobile reversed stackable grid ">
+                    <div class="ui vertical segment m-padded-tb ">
+                        <div class="ui middle aligned mobile reversed stackable grid ">
                             <!-- 右11 -->
                             <div class="eleven wide column">
                                 <h3 class="ui header">关于刻意练习的清单</h3>
-                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                <p class="m-text">
+                                    最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
                                     「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
                                     尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
-                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
-
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...
+                                </p>
                                 <div class="ui stackable grid">
                                     <div class="eleven wide column">
                                         <div class="ui tiny horizontal link list">
@@ -183,27 +235,25 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- 左5 -->
                             <div class="five wide column">
                                 <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
-                                    <!--                                        <img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui rounded image">
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="ui padded vertical segment m-padded-tb ">
-                        <div class="ui mobile reversed stackable grid ">
+                    <div class="ui vertical segment m-padded-tb ">
+                        <div class="ui middle aligned mobile reversed stackable grid ">
                             <!-- 右11 -->
                             <div class="eleven wide column">
                                 <h3 class="ui header">关于刻意练习的清单</h3>
-                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                <p class="m-text">
+                                    最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
                                     「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
                                     尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
-                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
-
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...
+                                </p>
                                 <div class="ui stackable grid">
                                     <div class="eleven wide column">
                                         <div class="ui tiny horizontal link list">
@@ -228,27 +278,25 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- 左5 -->
                             <div class="five wide column">
                                 <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
-                                    <!--                                        <img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui rounded image">
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="ui padded vertical segment m-padded-tb ">
-                        <div class="ui mobile reversed stackable grid ">
+                    <div class="ui vertical segment m-padded-tb ">
+                        <div class="ui middle aligned mobile reversed stackable grid ">
                             <!-- 右11 -->
                             <div class="eleven wide column">
                                 <h3 class="ui header">关于刻意练习的清单</h3>
-                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                <p class="m-text">
+                                    最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
                                     「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
                                     尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
-                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
-
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...
+                                </p>
                                 <div class="ui stackable grid">
                                     <div class="eleven wide column">
                                         <div class="ui tiny horizontal link list">
@@ -273,27 +321,25 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- 左5 -->
                             <div class="five wide column">
                                 <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
-                                    <!--                                        <img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui rounded image">
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="ui padded vertical segment m-padded-tb ">
-                        <div class="ui mobile reversed stackable grid ">
+                    <div class="ui vertical segment m-padded-tb ">
+                        <div class="ui middle aligned mobile reversed stackable grid ">
                             <!-- 右11 -->
                             <div class="eleven wide column">
                                 <h3 class="ui header">关于刻意练习的清单</h3>
-                                <p class="m-text">最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
+                                <p class="m-text">
+                                    最近几天在读「刻意练习」这本书，书中的一些概念与方法论让我受益非浅。
                                     「刻意练习」是适用于任何领域技能的一套有效的学习方法。在学习一项技能的时候，
                                     尽量的靠近「刻意练习」的原则，是非常有效的。这里结合自己的学习经验，
-                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...</p>
-
+                                    总结对大家普遍适用的核心 的概念与方法论以「清单」的形式分享，与君共勉...
+                                </p>
                                 <div class="ui stackable grid">
                                     <div class="eleven wide column">
                                         <div class="ui tiny horizontal link list">
@@ -318,28 +364,26 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- 左5 -->
                             <div class="five wide column">
                                 <a href="#" target="_blank">
-                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui round image">
-                                    <!--<img src="./static/image/bolgshow-800x450.jpg" alt="" class="ui round image">-->
+                                    <img src="https://picsum.photos/seed/picsum/800/450" alt="" class="ui rounded image">
                                 </a>
                             </div>
                         </div>
                     </div>
-
-
+                    <!--*/-->
                 </div>
 
+
                 <!-- footer -->
-                <div class="ui bottom attached segment">
+                <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
                     <div class="ui middle aligned two column grid">
                         <div class="column">
-                            <a href="#" class="ui mini teal basic button">上一页</a>
+                            <a href="#" th:href="@{/(page=${page.number}-1)}"  th:unless="${page.first}" class="ui mini teal basic button">上一页</a>
                         </div>
-                        <div class="right aligned column m-text-thin">
-                            <a href="#" class="ui mini teal basic button">上一页</a>
+                        <div class="right aligned column">
+                            <a href="#" th:href="@{/(page=${page.number}+1)}"  th:unless="${page.last}" class="ui mini teal basic button">下一页</a>
                         </div>
                     </div>
                 </div>
@@ -364,10 +408,12 @@
                     <div class="ui teal segment">
 
                         <div class="ui fluid vertical menu">
-                            <a href="#" class="item">
-                                学习日志
-                                <div class="ui teal basic left pointing label">13</div>
+                            <a href="#" class="item" th:each="type : ${types}" >
+                                <span th:text="${type.name}">学习日志</span>
+                                <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">
+                                13</div>
                             </a>
+                            <!--/*-->
                             <a href="#" class="item">
                                 思考与感悟
                                 <div class="ui teal basic left pointing label">13</div>
@@ -388,7 +434,7 @@
                                 学习日志
                                 <div class="ui teal basic left pointing label">13</div>
                             </a>
-
+                            <!--*/-->
                         </div>
 
                     </div>
@@ -411,9 +457,12 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="ui teal segment">
-
+                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}">
+                            <span th:text="${tag.name}">方法论</span>
+                            <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
+                        </a>
+                        <!--/*-->
                         <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny  ">Java
                             <div class="detail">23</div>
                         </a>
@@ -432,9 +481,8 @@
                         <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny  ">SpringCloud
                             <div class="detail">3</div>
                         </a>
-
+                        <!--*/-->
                     </div>
-
                 </div>
 
                 <!-- 最新推荐 -->
@@ -442,17 +490,17 @@
                     <div class="ui secondary segment">
                         <i class="bookmark icon"></i>最新推荐
                     </div>
-
-                    <div class="ui teal segment">
-                        <a href="#" target="_blank" class="m-black m-text-thin "> 用户故事 </a>
+                    <div class="ui teal segment" th:each="blog : ${recommendBlogs}">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-text-thin" th:text="${blog.title}" > 用户故事 </a>
                     </div>
+                    <!--/*-->
                     <div class="ui segment">
                         <a href="#" target="_blank" class="m-black m-text-thin "> 用户故事 </a>
                     </div>
                     <div class="ui segment">
                         <a href="#" target="_blank" class="m-black m-text-thin "> 用户故事 </a>
                     </div>
-
+                    <!--*/-->
                 </div>
 
 

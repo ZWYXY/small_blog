@@ -6,7 +6,9 @@ import com.zr.blog.po.Type;
 import com.zr.blog.service.TypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,18 +35,26 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.findByName(name);
     }
 
-    @Override
-    public Page<Type> listType(Pageable pageable) {
-        return typeRepository.findAll(pageable);
-    }
-
     /**
      * 获取所有Type 不需要分页
+     *
      * @return
      */
     @Override
     public List<Type> listType() {
         return typeRepository.findAll();
+    }
+
+    @Override
+    public Page<Type> listType(Pageable pageable) {
+        return typeRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Type> listTypeTop(Integer size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = PageRequest.of(0, size, sort);
+        return typeRepository.findTop(pageable);
     }
 
     @Override

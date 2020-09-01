@@ -6,7 +6,9 @@ import com.zr.blog.po.Tag;
 import com.zr.blog.service.TagService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +46,19 @@ public class TagServiceImpl implements TagService {
         String[] split = ids.split(",");
         List<Long> lIds = Arrays.stream(split).map(Long::parseLong).collect(Collectors.toList());
         return tagRepository.findAllById(lIds);
+    }
+
+    /**
+     * 获取最热门的几个标签
+     *
+     * @param size
+     * @return
+     */
+    @Override
+    public List<Tag> listTagTop(Integer size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable =PageRequest.of(0, size, sort);
+        return tagRepository.findTop(pageable);
     }
 
     @Override

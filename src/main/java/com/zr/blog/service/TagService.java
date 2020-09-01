@@ -36,6 +36,13 @@ public interface TagService {
     List<Tag> tagList(String ids);
 
     /**
+     * 获取最热门的几个标签
+     * @param size
+     * @return
+     */
+    List<Tag> listTagTop(Integer size);
+
+    /**
      * 根据 Tag 名称获取Tag
      * @param name
      * @return

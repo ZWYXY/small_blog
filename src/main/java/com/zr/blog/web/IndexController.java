@@ -1,35 +1,52 @@
 package com.zr.blog.web;
 
-import com.zr.blog.exception.NotFoundException;
+import com.zr.blog.service.BlogService;
+import com.zr.blog.service.TagService;
+import com.zr.blog.service.TypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.annotation.Resource;
 
 @Controller
 public class IndexController {
 
+    @Resource
+    private BlogService blogService;
+
+    @Resource
+    private TypeService typeService;
+
+    @Resource
+    private TagService tagService;
+
+    private static final String INDEX = "index";
+    private static final String SEARCH = "index";
+
+
     @GetMapping("/")
-    public String index() {
-//        int i = 9/0;
-//        String blog = null;
-//        if(blog == null) {
-//            throw new NotFoundException("博客不存在");
-//        }
-        return "index";
+    public String index(
+            @PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC)
+            Pageable pageable, Model model) {
+        model.addAttribute("page",blogService.blogList(pageable));
+        model.addAttribute("types", typeService.listTypeTop(6));
+        model.addAttribute("tags", tagService.listTagTop(10));
+        model.addAttribute("recommendBlogs", blogService.listRecommendBlogTop(8));
+        return INDEX;
     }
 
-    @GetMapping("/blog")
-    public String blog() {
-        return "blog";
-    }
-
-    @GetMapping("/blog_manage")
-    public String blogManage() {
-        return "admin/blogManage";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "admin/login";
+    @PostMapping("/search")
+    public String search(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                         @RequestParam String query, Model model) {
+        model.addAttribute("page", blogService.blogList("%"+query+"%", pageable));
+        model.addAttribute("query", query);
+        return SEARCH;
     }
 }

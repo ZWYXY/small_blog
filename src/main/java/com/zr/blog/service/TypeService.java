@@ -14,9 +14,11 @@ public interface TypeService {
 
     Type getTypeByName(String name);
 
+    List<Type> listType();
+
     Page<Type> listType(Pageable pageable);
 
-    List<Type> listType();
+    List<Type> listTypeTop(Integer size);
 
     Type updateType(Long id, Type type);
 

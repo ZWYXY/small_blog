@@ -34,6 +34,7 @@ public class Blog {
     private boolean recommend;      // 是否推荐
     private Date createTime;        // 创建时间
     private Date updateTime;        // 更新时间
+    private String description;     // 文章描述
 
     @Transient // 被这个注解声明的字段，不会被当成数据库字段，也不会去更新数据表
 //    @NotBlank(message = "tagsId can not be null or whitespace only")
