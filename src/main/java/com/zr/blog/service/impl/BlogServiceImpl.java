@@ -4,6 +4,7 @@ import com.zr.blog.dao.BlogRepository;
 import com.zr.blog.exception.NotFoundException;
 import com.zr.blog.po.Blog;
 import com.zr.blog.service.BlogService;
+import com.zr.blog.util.MyBeanUtils;
 import com.zr.blog.vo.BlogQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -77,7 +78,8 @@ public class BlogServiceImpl implements BlogService {
         } catch (EntityNotFoundException e) {
             throw new NotFoundException("不存在的blog无法更新");
         }
-        BeanUtils.copyProperties(blog, one);
+        BeanUtils.copyProperties(blog, one, MyBeanUtils.getNullPropertyNames(blog));
+        one.setUpdateTime(new Date());
         return blogRepository.save(one);
     }
 

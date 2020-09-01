@@ -10,15 +10,12 @@ import com.zr.blog.service.TagService;
 import com.zr.blog.service.TypeService;
 import com.zr.blog.vo.BlogQuery;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -115,8 +112,12 @@ public class BlogController {
         blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getType(blog.getType().getId()));
         blog.setTags(tagService.tagList(blog.getTagsId()));
-
-        Blog b = blogService.saveBlog(blog);
+        Blog b;
+        if(blog.getId() == null) {
+            b = blogService.saveBlog(blog);
+        } else {
+            b = blogService.updateBlog(blog.getId(), blog);
+        }
         if(b == null) {
             redirectAttributes.addFlashAttribute("message", "操作失败");
         } else {
