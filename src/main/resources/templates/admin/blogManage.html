@@ -40,8 +40,10 @@
 
 <div class="ui attached pointing menu ">
     <div class="ui container">
-        <a href="#" class="item">发布</a>
-        <a href="#" class="active item"> 列表</a>
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/blog/input}" class="item">New Blog</a>
+            <a href="#" th:href="@{/admin/blogs}" class="teal active item"> Blog List </a>
+        </div>
     </div>
 </div>
 
@@ -103,6 +105,7 @@
                 <th>标题</th>
                 <th>类型</th>
                 <th>推荐</th>
+                <th>状态</th>
                 <th>更新时间</th>
                 <th>操作</th>
             </tr>
@@ -113,7 +116,7 @@
                 <td th:text="${blog.title}" >springmvc啊啊</td>
                 <td th:text="${blog.type.name}">认知升级</td>
                 <td th:text="${blog.recommend} ? '是':'否'">是</td>
-                <td th:text="${blog.published} ? '草稿':'发布'">是</td>
+                <td th:text="${blog.published} ? '发布':'草稿'">是</td>
                 <td th:text="${blog.updateTime}">2020年4月12日</td>
                 <td>
                     <a href="#" th:href="@{/admin/blog/{id}/input(id=${blog.id})}" class="ui mini teal button">编辑</a>
@@ -122,11 +125,13 @@
             </tr>
            </tbody>
            <tfoot>
-           <tr>
-               <div class="ui mini right floated pagination menu" th:if="${page.totalPages}>1" >
-                   <a onclick="page(this)" th:attr="data-page='${page.number}-1'"  class="item" th:unless="${page.first}" >上一页</a>
-                   <a onclick="page(this)" th:attr="data-page='${page.number}+1'"  class="item" th:unless="${page.last}" >下一页</a>
-               </div>
+           <tr th:if="${page.totalPages}>1" >
+               <th colspan="7">
+                   <div class="ui mini right floated pagination menu"  >
+                       <a onclick="page(this)" th:attr="data-page=${page.number}-1"  class="item" th:unless="${page.first}" >上一页</a>
+                       <a onclick="page(this)" th:attr="data-page=${page.number}+1"  class="item" th:unless="${page.last}" >下一页</a>
+                   </div>
+               </th>
            </tr>
            </tfoot>
        </table>

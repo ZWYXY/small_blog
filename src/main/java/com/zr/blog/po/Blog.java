@@ -13,7 +13,7 @@ import java.util.List;
 import static javax.persistence.FetchType.LAZY;
 
 @Data
-@ToString
+@ToString(exclude = {"type", "tags", "user", "comments"})
 @NoArgsConstructor
 @Entity
 @Table(name = "t_blog")
@@ -36,8 +36,8 @@ public class Blog {
     private Date createTime;        // 创建时间
     private Date updateTime;        // 更新时间
 
-    @NotBlank(message = "tagsId can not be null or whitespace only")
     @Transient // 被这个注解声明的字段，不会被当成数据库字段，也不会去更新数据表
+//    @NotBlank(message = "tagsId can not be null or whitespace only")
     private String tagsId;          // 以字符串形式传回的Tag Id 比如： "1,2,3"
 
     @ManyToOne
@@ -51,5 +51,23 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
+
+
+    public void init() {
+        this.tagsId = tagsToIds(this.getTags());
+    }
+
+    // 1,2,3
+    private String tagsToIds(List<Tag> tags) {
+        if (!tags.isEmpty()) {
+            StringBuffer ids = new StringBuffer();
+            for (Tag tag : tags) {
+                ids.append(tag.getId()).append(",");
+            }
+            return ids.substring(0, ids.lastIndexOf(","));
+        } else {
+            return tagsId;
+        }
+    }
 
 }

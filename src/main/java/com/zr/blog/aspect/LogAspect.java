@@ -22,7 +22,8 @@ public class LogAspect {
     *
     * */
 //    @Pointcut("execution(public * com.zr.blog.web..*.*(..))")
-    @Pointcut("execution(* com.zr.blog.web.*.*(..))")
+
+    @Pointcut("execution(* com.zr.blog.web..*.*(..))")
     public void log() {}
 
     @Before("log()")

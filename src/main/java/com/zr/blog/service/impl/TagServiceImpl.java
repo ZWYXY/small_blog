@@ -1,16 +1,14 @@
 package com.zr.blog.service.impl;
 
 import com.zr.blog.dao.TagRepository;
-import com.zr.blog.dao.TypeRepository;
 import com.zr.blog.exception.NotFoundException;
 import com.zr.blog.po.Tag;
-import com.zr.blog.po.Type;
 import com.zr.blog.service.TagService;
-import com.zr.blog.service.TypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -53,11 +51,13 @@ public class TagServiceImpl implements TagService {
         return tagRepository.findByName(name);
     }
 
+    @Transactional
     @Override
     public Tag save(Tag tag) {
         return tagRepository.save(tag);
     }
 
+    @Transactional
     @Override
     public Tag updateTag(Long id, Tag tag) {
         Tag one;
@@ -69,7 +69,7 @@ public class TagServiceImpl implements TagService {
         }
         return tagRepository.save(one);
     }
-
+    @Transactional
     @Override
     public void deleteTag(Long id) {
         tagRepository.deleteById(id);

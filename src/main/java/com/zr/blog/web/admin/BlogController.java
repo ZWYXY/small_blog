@@ -1,12 +1,17 @@
 package com.zr.blog.web.admin;
 
 
+import com.alibaba.fastjson.JSON;
 import com.zr.blog.po.Blog;
 import com.zr.blog.po.User;
 import com.zr.blog.service.BlogService;
 import com.zr.blog.service.TagService;
 import com.zr.blog.service.TypeService;
 import com.zr.blog.vo.BlogQuery;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -15,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,6 +29,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin")
 public class BlogController {
@@ -30,6 +37,8 @@ public class BlogController {
     private static final String INPUT = "admin/publish";
     private static final String BLOG_LIST = "admin/blogManage";
     private static final String REDIRECT_LIST = "redirect:/admin/blogs";
+
+//    private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
     @Resource
     private BlogService blogService;
@@ -53,8 +62,10 @@ public class BlogController {
     @PostMapping("/blogs/search")
     public String search(
             @PageableDefault(size =  2, sort = {"updateTime"}, direction = Sort.Direction.DESC)
-                    Pageable pageable, Model model, BlogQuery blogQuery) {
-        model.addAttribute("page", blogService.blogList(pageable, blogQuery));
+            Pageable pageable, Model model, BlogQuery blogQuery) {
+        Page<Blog> blogs = blogService.blogList(pageable, blogQuery);
+        model.addAttribute("page", blogs);
+        log.error("分页信息{}", JSON.toJSONString(blogs));
         return "/admin/blogManage :: blogList";
     }
 
@@ -65,9 +76,28 @@ public class BlogController {
      */
     @GetMapping("/blog/input")
     public String input(Model model) {
+        this.setTypeAndTags(model);
+        model.addAttribute("blog", new Blog());
+        return INPUT;
+    }
+
+    private void setTypeAndTags(Model model) {
         model.addAttribute("tags", tagService.tagList());
         model.addAttribute("types", typeService.listType());
-        model.addAttribute("blog", new Blog());
+    }
+
+    /**
+     * 跳转到publish页面，并填充指定id的blog数据
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("/blog/{id}/input")
+    public String edit(@PathVariable Long id,  Model model) {
+        this.setTypeAndTags(model);
+        Blog blog = blogService.getBlog(id);
+        blog.init();
+        model.addAttribute("blog", blog);
         return INPUT;
     }
 
