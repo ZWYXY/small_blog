@@ -239,9 +239,10 @@
     });
 
     /* 点击显示，下拉菜单 */
-    $(".ui.dropdown").dropdown(
-        {on : 'hover'}
-    );
+    $(".ui.dropdown").dropdown({
+        on : 'hover',
+        allowAdditions:true // 允许添加非下拉列表项
+    });
 
     /* 点击保存按钮事件 */
     $('#save-btn').click(function () {

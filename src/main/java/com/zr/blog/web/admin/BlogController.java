@@ -2,6 +2,7 @@ package com.zr.blog.web.admin;
 
 
 import com.alibaba.fastjson.JSON;
+import com.zr.blog.exception.NotFoundException;
 import com.zr.blog.po.Blog;
 import com.zr.blog.po.User;
 import com.zr.blog.service.BlogService;
@@ -121,6 +122,17 @@ public class BlogController {
         } else {
             redirectAttributes.addFlashAttribute("message", "操作客成功");
         }
+        return REDIRECT_LIST;
+    }
+
+    @GetMapping("/blog/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes ) {
+        try {
+            blogService.deleteBlog(id);
+        } catch (Exception e) {
+            throw new NotFoundException("找不到对应ID的blog，该博客可能已经被删除");
+        }
+        redirectAttributes.addFlashAttribute("message", "操作成功");
         return REDIRECT_LIST;
     }
 
