@@ -10,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,7 +29,8 @@ public class IndexController {
     private TagService tagService;
 
     private static final String INDEX = "index";
-    private static final String SEARCH = "index";
+    private static final String SEARCH = "search";
+    private static final String BLOG = "blog";
 
 
     @GetMapping("/")
@@ -48,5 +50,11 @@ public class IndexController {
         model.addAttribute("page", blogService.blogList("%"+query+"%", pageable));
         model.addAttribute("query", query);
         return SEARCH;
+    }
+
+    @GetMapping("/blog/{id}")
+    public String blog(@PathVariable Long id, Model model) {
+        model.addAttribute("blog", blogService.getAndConvert(id));
+        return BLOG;
     }
 }

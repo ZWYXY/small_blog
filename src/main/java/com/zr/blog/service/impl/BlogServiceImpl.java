@@ -4,6 +4,7 @@ import com.zr.blog.dao.BlogRepository;
 import com.zr.blog.exception.NotFoundException;
 import com.zr.blog.po.Blog;
 import com.zr.blog.service.BlogService;
+import com.zr.blog.util.MarkdownUtils;
 import com.zr.blog.util.MyBeanUtils;
 import com.zr.blog.vo.BlogQuery;
 import org.apache.commons.lang3.StringUtils;
@@ -107,5 +108,15 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public void deleteBlog(Long id) {
         blogRepository.deleteById(id);
+    }
+
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.getOne(id);
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog,b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
     }
 }

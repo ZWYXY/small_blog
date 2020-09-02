@@ -263,6 +263,13 @@
     /* 验证表单项 */
     $(".ui.form").form({
         fields : {
+            flag : {
+                identifier : "flag",
+                rules:[{
+                    type: "empty",
+                    prompt: "标题: 请输入博客属性"
+                }]
+            },
             title : {
                 identifier : "title",
                 rules:[{
@@ -289,6 +296,13 @@
                 rules:[{
                     type: "empty",
                     prompt: "标题: 请输入博客首图"
+                }]
+            },
+            description : {
+                identifier: 'description',
+                rules: [{
+                    type : 'empty',
+                    prompt: '标题：请输入博客描述'
                 }]
             }
         }
