@@ -17,18 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class LogAspect {
 
-    /*
-    *   两种写法都可以
-    *
-    * */
-//    @Pointcut("execution(public * com.zr.blog.web..*.*(..))")
-
+    //@Pointcut("execution(public * com.zr.blog.web..*.*(..))")
     @Pointcut("execution(* com.zr.blog.web..*.*(..))")
     public void log() {}
 
     @Before("log()")
     public void doBefore(JoinPoint joinPoint) {
-
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 //        HttpServletResponse response = attributes.getResponse();
         HttpServletRequest request = attributes.getRequest();
@@ -43,7 +37,6 @@ public class LogAspect {
 
     @After("log()")
     public void doAfter() {
-//        log.info("------------doAfter-------");
     }
 
     @AfterReturning(returning = "result", pointcut = "log()")
