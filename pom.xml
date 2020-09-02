@@ -55,9 +55,6 @@
 <!--            <artifactId>hibernate-validator</artifactId>-->
 <!--            <version>6.1.5.Final</version>-->
 <!--        </dependency>-->
-
-
-
         <!-- java mysql connector  -->
         <dependency>
             <groupId>mysql</groupId>
@@ -105,9 +102,6 @@
             <artifactId>commonmark-ext-gfm-tables</artifactId>
             <version>0.10.0</version>
         </dependency>
-
-
-
     </dependencies>
 
     <build>
@@ -119,7 +113,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 </project>
