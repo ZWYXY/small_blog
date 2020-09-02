@@ -19,20 +19,21 @@
 <nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini ">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item"> blog </h2>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
-                <i class=" home icon"></i> 首页 </a>
+            <h2 class="ui teal header item"> Blog </h2>
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'" th:href="@{/}" >
+                <i class=" home icon"></i> 首页
+            </a>
 
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'" th:href="@{/types/-1}" >
                 <i class=" th list icon"></i> 分类 </a>
 
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'" th:href="@{/tags/-1}" >
                 <i class=" tags icon"></i> 标签 </a>
 
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'">
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'" th:href="@{/archives}" >
                 <i class=" clone icon"></i> 归档 </a>
 
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'">
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'" th:href="@{/about}" >
                 <i class=" info icon"></i> 关于我 </a>
 
             <div class="right m-item item m-mobile-hide ">
