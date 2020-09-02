@@ -8,6 +8,11 @@
 .m-padded {
     padding: 1em !important ; /* 1 em = 14px */
 }
+
+.m-padded-large {
+    padding: 1.5em !important ; /* 1 em = 14px */
+}
+
 .m-padded-tb-mini {
     padding-top: 0.2em !important ;
     padding-bottom: 0.2em !important ; /* 1 em = 14px */
@@ -52,6 +57,11 @@
 }
 .m-margin-top-large {
     margin-top: 2em !important;
+}
+
+.m-margin-rl-tiny {
+    margin-right: 2em !important;
+    margin-left : 3em !important;
 }
 
 .m-margin-tb-mini {
